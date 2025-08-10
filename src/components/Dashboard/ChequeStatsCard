@@ -1,0 +1,34 @@
+const chequeStatsCards = [
+  {
+    title: 'Total Cheques',
+    value: stats.totalCheques,
+    change: '+2 new this week',
+    changeType: 'positive',
+    icon: CreditCard,
+    color: 'bg-yellow-500'
+  },
+  {
+    title: 'Cashed Cheques',
+    value: stats.cashedCheques,
+    change: '+1 cashed',
+    changeType: 'positive',
+    icon: DollarSign,
+    color: 'bg-success'
+  },
+  {
+    title: 'Pending Cheques',
+    value: stats.pendingCheques,
+    change: '-1 from last week',
+    changeType: 'neutral',
+    icon: Clock,
+    color: 'bg-warning'
+  },
+  {
+    title: 'Cancelled Cheques',
+    value: stats.cancelledCheques,
+    change: '+1 cancelled',
+    changeType: 'negative',
+    icon: AlertTriangle,
+    color: 'bg-error'
+  }
+];
