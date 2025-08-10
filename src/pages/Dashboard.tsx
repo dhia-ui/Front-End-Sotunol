@@ -122,6 +122,13 @@ const Dashboard: React.FC = () => {
         {statsCards.map((card, index) => (
           <StatsCard key={card.title} {...card} index={index} />
         ))}
+        <div className="card bg-base-100 shadow-xl p-6 flex flex-col justify-between">
+          <div>
+            <h2 className="card-title text-2xl mb-2">Cheques Management</h2>
+            <p className="text-base-content/60">View and manage cheques</p>
+          </div>
+          <a href="/cheques" className="btn btn-primary mt-4">Go to Cheques</a>
+        </div>
       </div>
 
       {/* Charts */}
