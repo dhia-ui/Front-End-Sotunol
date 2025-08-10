@@ -21,10 +21,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const location = useLocation();
 
   const navItems = [
-    { path: '/', icon: Home, label: 'Dashboard', color: 'text-blue-500' },
-    // Financial Management section: invoices and cheques
-    { path: '/invoices', icon: FileText, label: 'Invoices', color: 'text-green-500' },
-    { path: '/cheques', icon: CreditCard, label: 'Cheques', color: 'text-yellow-500' },
+    { path: '/', icon: Home, label: 'Dashboard', color: 'text-blue-500' },   
     { path: '/ai-processing', icon: Upload, label: 'AI Processing', color: 'text-purple-500' },
     { path: '/analytics', icon: BarChart3, label: 'Analytics', color: 'text-orange-500' },
     { path: '/clients', icon: Users, label: 'Clients', color: 'text-pink-500' },
@@ -32,6 +29,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     { path: '/archive', icon: Archive, label: 'Archive', color: 'text-gray-500' },
     { path: '/settings', icon: Settings, label: 'Settings', color: 'text-slate-500' },
   ];
+  const financialNavItems = [
+  { path: '/invoices', icon: FileText, label: 'Invoices', color: 'text-green-500' },
+  { path: '/cheques', icon: CreditCard, label: 'Cheques', color: 'text-yellow-500' },
+];
 
   return (
     <AnimatePresence>
@@ -71,42 +72,79 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
               {/* Navigation */}
               <nav className="flex-1 p-4">
                 <ul className="space-y-2">
-                  {navItems.map((item, index) => {
-                    const Icon = item.icon;
-                    const isActive = location.pathname === item.path;
-                    
-                    return (
-                      <motion.li
-                        key={item.path}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        <Link
-                          to={item.path}
-                          onClick={onClose}
-                          className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 group ${
-                            isActive 
-                              ? 'bg-primary text-primary-content shadow-lg' 
-                              : 'hover:bg-base-200 text-base-content'
-                          }`}
-                        >
-                          <Icon 
-                            size={20} 
-                            className={`${isActive ? 'text-primary-content' : item.color} group-hover:scale-110 transition-transform`}
-                          />
-                          <span className="font-medium">{item.label}</span>
-                          {isActive && (
-                            <motion.div
-                              layoutId="activeIndicator"
-                              className="ml-auto w-2 h-2 bg-primary-content rounded-full"
-                            />
-                          )}
-                        </Link>
-                      </motion.li>
-                    );
-                  })}
-                </ul>
+  {/* Render main navItems (Dashboard, AI Processing, etc.) */}
+  {navItems.map((item, index) => {
+    const Icon = item.icon;
+    const isActive = location.pathname === item.path;
+    return (
+      <motion.li
+        key={item.path}
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: index * 0.1 }}
+      >
+        <Link
+          to={item.path}
+          onClick={onClose}
+          className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 group ${
+            isActive 
+              ? 'bg-primary text-primary-content shadow-lg' 
+              : 'hover:bg-base-200 text-base-content'
+          }`}
+        >
+          <Icon 
+            size={20} 
+            className={`${isActive ? 'text-primary-content' : item.color} group-hover:scale-110 transition-transform`}
+          />
+          <span className="font-medium">{item.label}</span>
+          {isActive && (
+            <motion.div
+              layoutId="activeIndicator"
+              className="ml-auto w-2 h-2 bg-primary-content rounded-full"
+            />
+          )}
+        </Link>
+      </motion.li>
+    );
+  })}
+
+  {/* Financial Management Section */}
+  <li className="font-bold text-base-content/70 mt-4 mb-2">Financial Management</li>
+  {financialNavItems.map((item, index) => {
+    const Icon = item.icon;
+    const isActive = location.pathname === item.path;
+    return (
+      <motion.li
+        key={item.path}
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: index * 0.1 }}
+      >
+        <Link
+          to={item.path}
+          onClick={onClose}
+          className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 group ${
+            isActive 
+              ? 'bg-primary text-primary-content shadow-lg' 
+              : 'hover:bg-base-200 text-base-content'
+          }`}
+        >
+          <Icon 
+            size={20} 
+            className={`${isActive ? 'text-primary-content' : item.color} group-hover:scale-110 transition-transform`}
+          />
+          <span className="font-medium">{item.label}</span>
+          {isActive && (
+            <motion.div
+              layoutId="activeIndicator"
+              className="ml-auto w-2 h-2 bg-primary-content rounded-full"
+            />
+          )}
+        </Link>
+      </motion.li>
+    );
+  })}
+</ul>
               </nav>
 
               {/* Footer */}
