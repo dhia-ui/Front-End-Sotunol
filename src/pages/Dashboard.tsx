@@ -57,39 +57,74 @@ const Dashboard: React.FC = () => {
   }
 
   const statsCards = [
-    {
-      title: 'Total Revenue',
-      value: `$${stats.totalRevenue.toLocaleString()}`,
-      change: '+12.5% from last month',
-      changeType: 'positive' as const,
-      icon: DollarSign,
-      color: 'bg-success'
-    },
-    {
-      title: 'Total Invoices',
-      value: stats.totalInvoices,
-      change: '+3 new this week',
-      changeType: 'positive' as const,
-      icon: FileText,
-      color: 'bg-primary'
-    },
-    {
-      title: 'Pending Invoices',
-      value: stats.pendingInvoices,
-      change: '-2 from last week',
-      changeType: 'positive' as const,
-      icon: Clock,
-      color: 'bg-warning'
-    },
-    {
-      title: 'Overdue Invoices',
-      value: stats.overdueInvoices,
-      change: stats.overdueInvoices > 0 ? 'Needs attention' : 'All caught up!',
-      changeType: stats.overdueInvoices > 0 ? 'negative' as const : 'positive' as const,
-      icon: AlertTriangle,
-      color: 'bg-error'
-    }
-  ];
+  // --- Invoice Cards ---
+  {
+    title: 'Total Revenue',
+    value: `$${stats.totalRevenue.toLocaleString()}`,
+    change: '+12.5% from last month',
+    changeType: 'positive' as const,
+    icon: DollarSign,
+    color: 'bg-success'
+  },
+  {
+    title: 'Total Invoices',
+    value: stats.totalInvoices,
+    change: '+3 new this week',
+    changeType: 'positive' as const,
+    icon: FileText,
+    color: 'bg-primary'
+  },
+  {
+    title: 'Pending Invoices',
+    value: stats.pendingInvoices,
+    change: '-2 from last week',
+    changeType: 'positive' as const,
+    icon: Clock,
+    color: 'bg-warning'
+  },
+  {
+    title: 'Overdue Invoices',
+    value: stats.overdueInvoices,
+    change: stats.overdueInvoices > 0 ? 'Needs attention' : 'All caught up!',
+    changeType: stats.overdueInvoices > 0 ? 'negative' as const : 'positive' as const,
+    icon: AlertTriangle,
+    color: 'bg-error'
+  },
+
+  // --- Cheque Cards ---
+  {
+    title: 'Total Cheques',
+    value: stats.totalCheques,
+    change: '+2 new this week',
+    changeType: 'positive' as const,
+    icon: CreditCard,
+    color: 'bg-yellow-500'
+  },
+  {
+    title: 'Cashed Cheques',
+    value: stats.cashedCheques,
+    change: '+1 cashed',
+    changeType: 'positive' as const,
+    icon: DollarSign,
+    color: 'bg-success'
+  },
+  {
+    title: 'Pending Cheques',
+    value: stats.pendingCheques,
+    change: '-1 from last week',
+    changeType: 'neutral' as const,
+    icon: Clock,
+    color: 'bg-warning'
+  },
+  {
+    title: 'Cancelled Cheques',
+    value: stats.cancelledCheques,
+    change: '+1 cancelled',
+    changeType: 'negative' as const,
+    icon: AlertTriangle,
+    color: 'bg-error'
+  }
+];
 
   return (
     <div className="space-y-8">
@@ -135,6 +170,8 @@ const Dashboard: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <RevenueChart data={stats.monthlyRevenue} />
         <InvoiceStatusChart data={stats.invoicesByStatus} />
+        <ChequeRevenueChart data={stats.monthlyChequeAmounts} />
+        <ChequeStatusChart data={stats.chequesByStatus} />
       </div>
 
       {/* Recent Activity */}
