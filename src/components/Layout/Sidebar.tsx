@@ -22,6 +22,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
   const navItems = [
     { path: '/', icon: Home, label: 'Dashboard', color: 'text-blue-500' },
+    // Financial Management section: invoices and cheques
     { path: '/invoices', icon: FileText, label: 'Invoices', color: 'text-green-500' },
     { path: '/cheques', icon: CreditCard, label: 'Cheques', color: 'text-yellow-500' },
     { path: '/ai-processing', icon: Upload, label: 'AI Processing', color: 'text-purple-500' },
